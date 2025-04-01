@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: go-hello-app-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app: go-hello-app   # Service を選択するラベル
+  namespaceSelector:
+    matchNames:
+    - default             # Service が存在する Namespace
+  endpoints:
+  - port: http            # Service で定義したポート名 'http'
+    path: /metrics        # スクレイプパス
+    interval: 15s         # スクレイプ間隔
+    relabelings:
+    - sourceLabels: [__meta_kubernetes_pod_name]
+      targetLabel: pod
+    - sourceLabels: [__meta_kubernetes_namespace]
+      targetLabel: namespace
