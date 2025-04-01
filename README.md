@@ -2,6 +2,8 @@
 
 kube-prometheus-stack による Goアプリケーションの監視
 
+<img src="https://github.com/user-attachments/assets/bd92f31f-17e4-4d59-a27f-e29ade4c153d" width="700">
+
 ## 環境構築
 
 GoアプリのDockerイメージを作成する
